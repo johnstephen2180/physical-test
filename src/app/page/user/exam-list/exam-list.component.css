@@ -1,0 +1,15 @@
+.exam-card {
+  padding: 5px;
+  background-color: #DBDBDB;
+  margin-bottom: 10px;
+  display: block;
+  position: relative;
+}
+
+.exam-card button{
+  position: absolute;
+  float: right;
+  height: 100%;
+  top:0px;
+  right: 0px;
+}

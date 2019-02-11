@@ -1,0 +1,104 @@
+<div *ngIf="started" class="row" style="padding:15px;">
+  <div *ngIf="doAtQuestion == question.order" style="width: 100%;">
+    <div style="width: 100%; height: 40px; background-color: #EEEEEE;padding: 8px 0px 10px 8px;"><h5>Kiểm Tra Kết
+      Quả</h5>
+    </div>
+    <div style="padding: 15px 0px 15px 0px;">
+      <input type="text" placeholder="Nhập kết quả" style="padding: 5px;">
+      <button style="margin-left: 10px; padding: 5px;">Kiểm tra</button>
+    </div>
+  </div>
+
+  <div style="width: 100%; height: 40px; background-color: #EEEEEE;padding: 8px 0px 10px 8px;"><h5>Xem Gợi Ý</h5></div>
+  <div *ngFor="let suggest of question.suggestList" style="margin-top: 15px; width: 100%;">
+    <div style="width: 100%;">
+      <div style="position: relative">
+        <!--Dem khi dang lam tai cau hoi nao, va tai goi y nao-->
+        <div *ngIf="question.order == doAtQuestion && suggest.order == countdownAtSuggest;else other_content">
+          <button [disabled]="isDisabled" type="button" class="btn btn-outline-secondary"
+                  style="padding-right: 70px; margin-left: 10px; "> Gợi ý {{suggest.order}}
+          </button>
+          <div class="showTime">
+            <span>{{ suggestTimer.getMinutes() }}</span>:<span>{{ suggestTimer.getSeconds() }}</span>
+          </div>
+        </div>
+
+        <ng-template #other_content>
+          <!-- Cac cau da lam roi thi hien thi het goi y ra, hoac dang lam cau do va da mo cac goi y truoc-->
+          <div
+            *ngIf="(question.order < doAtQuestion) || question.order <= doAtQuestion && suggest.order < countdownAtSuggest;else show_time_content">
+            <button type="button" class="btn btn-success" data-toggle="collapse"
+                    attr.data-target="#collapseSuggest-{{question.order}}-{{suggest.order}}"
+                    style="padding-right: 70px; margin-left: 10px; "> Xem gợi ý {{suggest.order}}
+            </button>
+
+            <div class="collapse" id="collapseSuggest-{{question.order}}-{{suggest.order}}">
+              <div class="card card-body" style="margin-top: 20px; margin-left: 10px;">
+                <img src="http://localhost:9490/{{suggest.content}}" style="height: 290px;">.
+              </div>
+            </div>
+
+          </div>
+
+          <ng-template #show_time_content>
+            <button [disabled]="isDisabled" type="button" class="btn btn-outline-secondary"
+                    style="padding-right: 70px; margin-left: 10px; "> Gợi ý {{suggest.order}}
+            </button>
+            <div class="showTime">
+              <span>{{showInMinutesArray[suggest.order - 1]}}</span>:<span>0</span></div>
+          </ng-template>
+        </ng-template>
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="doAtQuestion < question.order;else other_answer">
+
+  </div>
+  <ng-template #other_answer>
+    <div
+      style="width: 100%; height: 40px; background-color: #EEEEEE;padding: 8px 0px 10px 8px; margin:15px 0px 15px 0px">
+      <h5>Xem Bài Giải</h5></div>
+
+    <div style="width: 100%;" *ngIf="doAtQuestion == question.order;else previous_answer">
+      <div style="position: relative;">
+        <div *ngIf="countdownAnswer;else not_countdown_answer">
+          <button (click)="viewAnswer()" [disabled]="isDisabled" type="button" class="btn btn-outline-secondary"
+                  style="padding-right: 70px; margin-left: 10px; "> Bài giải
+          </button>
+          <div class="showTime">
+            <span>{{ suggestTimer.getMinutes() }}:{{ suggestTimer.getSeconds() }} </span>
+          </div>
+        </div>
+        <ng-template #not_countdown_answer>
+          <button (click)="viewAnswer()" [disabled]="isDisabled" type="button" class="btn btn-outline-secondary"
+                  style="padding-right: 70px; margin-left: 10px; "> Bài giải
+          </button>
+          <div class="showTime">
+            <span>0:35 </span>
+          </div>
+        </ng-template>
+
+      </div>
+    </div>
+
+    <ng-template #previous_answer>
+      <div *ngIf="doAtQuestion > question.order" style="position: relative; width: 100%;">
+        <button type="button" class="btn btn-success" data-toggle="collapse"
+                attr.data-target="#collapseAnswer-{{question.order}}"
+                style="padding-right: 70px; margin-left: 10px; "> Bài giải
+        </button>
+
+        <div class="collapse" id="collapseAnswer-{{question.order}}">
+          <div class="card card-body" style="margin-top: 20px; margin-left: 10px;">
+            <img src="http://localhost:9490/{{question.answer.content}}" style="height: 290px;">.
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+  </ng-template>
+
+
+</div>

@@ -1,0 +1,70 @@
+<!--<div style="padding-top:30px; height: 800px">
+  <div *ngIf="isLogin; else elseBlock">
+
+    <div style="width: 100%; padding-bottom: 10px;">
+      <img style="width: 100px; margin-left:auto; margin-right: auto; display: block; height:100px;border-radius: 100%;"
+           src="https://scontent.fsgn2-4.fna.fbcdn.net/v/t1.0-9/49183634_2292774580741076_5219639373615595520_o.jpg?_nc_cat=109&_nc_ht=scontent.fsgn2-4.fna&oh=31dc1ee8f88d61a284a85ea29d315d59&oe=5C8BDFDC">
+      <div style="width: 100%; text-align: center;"><span style="color: #3b5998; font-size: 18px; font-weight: bold;">Lam Ha</span>
+      </div>
+    </div>
+    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <a routerLink="/user" >Làm Bài</a>
+      <a routerLink="/user/history-test">Lịch Sử</a>
+      <a routerLink="/user/exam-list" >Danh Sách Đề</a>
+      <a routerLink="/user/profile" >Cài Đặt - Gioi han nguoi dung</a>
+      <a routerLink="/user/profile" >Soan Bai</a>
+      <a routerLink="/user/profile" >Duyet Bai</a>
+      <a routerLink="/user/profile" >Quan ly hoc vien</a>
+    </div>
+  </div>
+
+  <ng-template #elseBlock><a class="nav-link" routerLink="/login">Left Menu <span class="sr-only">(current)</span></a>
+  </ng-template>
+
+</div>-->
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="nav-side-menu">
+  <div class="brand" *ngIf="user != null">
+    <img src="{{user.photoUrl}}"><span>{{user.name}}</span>
+  </div>
+  <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+  <div class="menu-list">
+
+    <ul id="menu-content" class="menu-content collapse">
+      <li routerLinkActive="active">
+        <a routerLink="/user/exam-list">
+          <i class="fa fa-file-text-o fa-lg"></i> Danh sách đề
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/user/exam-create">
+          <i class="fa fa-edit fa-lg"></i> Soạn đề
+        </a>
+      </li>
+
+
+      <li routerLinkActive="active">
+        <a routerLink="/user/history-test">
+          <i class="fa fa-calendar-o fa-lg"></i> Lịch sử làm bài
+        </a>
+      </li>
+
+      <li routerLinkActive="active">
+        <a routerLink="/user/list">
+          <i class="fa fa-users fa-lg"></i> Danh sách học sinh
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/user/history-test-all">
+          <i class="fa fa-bug fa-lg"></i> Chấm bài
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+

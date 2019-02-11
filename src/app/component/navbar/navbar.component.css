@@ -1,0 +1,25 @@
+.top-bar{
+  background: #5bb06c;
+  height: 4rem;
+  overflow: visible;
+  padding-bottom: 1px;
+  z-index: 1002;
+}
+
+.top-left .nav-link {
+  border-radius: 1000px;
+  color: #fff;
+  font-family: Roboto,Helvetica,Arial,sans-serif;
+  font-size:14px;
+  font-weight: bold;
+  height: auto;
+  line-height: 36px !important;
+  margin: 12px 0;
+  padding: 0 1rem;
+  top: auto;
+}
+
+.top-bar .logo{
+  width: 138px;
+  height: 50px;
+}

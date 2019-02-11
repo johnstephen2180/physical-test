@@ -1,0 +1,33 @@
+<div style="margin-top: 15px;" *ngIf="examList != null">
+
+  <table class="table table-striped table-sm">
+    <thead>
+    <tr>
+      <th scope="col">Học Sinh</th>
+      <th scope="col">Đề Thi</th>
+      <th scope="col">Hoàn Thành</th>
+      <th scope="col">Làm Đúng</th>
+      <th scope="col">Thời Gian</th>
+      <th scope="col">Xem</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let lesson of examList.content">
+      <td><img class="user-avatar" src="{{lesson.account.avatar}}">
+        <span class="user-name">{{lesson.account.fullName}}</span></td>
+      <td>Đề số {{lesson.examination.id}}: {{lesson.examination.title}}</td>
+      <td>{{lesson.finishNo}}</td>
+      <td>{{lesson.answerRightNo}}</td>
+      <td>{{lesson.startTime | date:'dd/MM/yyyy hh:mm'}}</td>
+      <td><a style="color: #3b5998">Xem</a></td>
+    </tr>
+    </tbody>
+  </table>
+  <pagination [boundaryLinks]="true" [totalItems]="examList.totalPages" (pageChanged)="pageChanged($event)"
+              previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+
+  </pagination>
+</div>
+
+
+

@@ -1,0 +1,42 @@
+<div *ngIf="examination != null;else other_content">
+  <div style="border-bottom: 1px solid #CCC; margin-bottom: 15px;">
+    <div style="height: 50px;padding-top: 10px;">
+      <span style="float:left; font-size: 18px;">Đề Số: {{examination.id}}</span>
+      <span style="float:right;">Ngày tạo: {{examination.createTime | date:'d/M/yyyy'}}</span>
+    </div>
+    <div>
+      <h4>{{examination.title}} </h4>
+      <span>Thời gian làm bài: 90 phút</span>
+      <span *ngIf="!started" style="float: right">Bạn có {{ suggestTimer.getMinutes() }}
+        phút {{ suggestTimer.getSeconds() }} giây để đọc đề </span>
+    </div>
+
+  </div>
+
+  <div style="width: 80%; text-align: center; margin:auto; padding: 10px 0px 10px 0px">
+
+    <carousel [(activeSlide)]="activeSlideIndex" [showIndicators]="showIndicator" [noPause]="noPause"
+              [interval]="myInterval">
+      <slide *ngFor="let question of examination.questionList">
+        <img src="http://localhost:9490/{{question.content}}" alt="first slide" style="display: block; width: 100%;">
+        <div class="carousel-caption d-none d-md-block" style="bottom: -10px !important;">
+          <h3 style="color: black;">Câu: {{question.order}}/{{questionNo}}</h3>
+        </div>
+      </slide>
+    </carousel>
+  </div>
+
+  <!--https://angular.io/guide/component-interaction-->
+  <app-question-card [started]="started" [question]="examination.questionList[activeSlideIndex]"
+                     [doAtQuestion]="doAtQuestion" [suggestTimer]="suggestTimer"
+                     [countdownAtSuggest]="countdownAtSuggest"  [countdownAnswer]="countdownAnswer"
+                     (viewAnswerEmitter)='viewAnswer($event)'>
+
+  </app-question-card>
+</div>
+
+<ng-template #other_content>Dang tai du lieu...</ng-template>
+
+
+
+

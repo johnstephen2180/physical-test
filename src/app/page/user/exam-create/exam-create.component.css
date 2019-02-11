@@ -1,0 +1,27 @@
+.card {
+  margin-top: 10px;
+}
+
+.exam-tile {
+  position: relative;
+}
+
+.exam-tile img {
+  top: 3px;
+  right: 3px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.show {
+  opacity: 1 !important;
+  transition: .5s ease-in-out all;
+  height: 40px !important;
+
+}
+
+.step {
+  opacity: 0;
+  height: 0px;
+}
+

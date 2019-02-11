@@ -1,0 +1,25 @@
+.user-avatar {
+  width: 40px;
+  border-radius: 50%;
+}
+
+.user-name {
+  margin-left: 10px;
+}
+
+.exam-card {
+  padding-bottom: 5px;
+  border-bottom: 1px solid #DBDBDB;
+  margin-bottom: 5px;
+}
+
+.start-time {
+  font-size: 13px;
+  float: right;
+  margin-top: 5px;
+  color: #CCCCCC;
+}
+
+.exam-title{
+  margin-top:10px;
+}

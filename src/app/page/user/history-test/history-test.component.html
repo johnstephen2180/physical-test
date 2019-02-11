@@ -1,0 +1,16 @@
+<div style="margin-top: 15px;" *ngIf="examList != null">
+  <div *ngFor="let lesson of examList.content" class="exam-card">
+    <h5>Đề số {{lesson.examination.id}}: {{lesson.examination.title}}</h5>
+    <div style="font-size: 13px;">Ngày làm bài: {{lesson.startTime | date:'dd/MM/yyyy hh:mm'}}</div>
+    <div>
+      <span>Hoàn thành: {{lesson.finishNo}}</span><br>
+      <span>Số câu làm đúng: {{lesson.answerRightNo}}</span>
+    </div>
+    <button type="button" class="btn btn-primary">Đã hoàn thành</button>
+  </div>
+  <pagination [boundaryLinks]="true" [totalItems]="examList.totalPages"
+              previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+</div>
+
+
+

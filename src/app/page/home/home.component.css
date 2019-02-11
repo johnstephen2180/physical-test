@@ -1,0 +1,64 @@
+.page-intro {
+  border-top: 1px solid #7FC089;
+  background-color: #5AB06B;
+  height: 400px;
+}
+
+.page-intro-left {
+  padding: 80px 260px 30px 160px;
+}
+
+.page-intro-left h1 {
+  font-family: "Roboto Slab", Georgia, Cambria, "Times New Roman", Times, serif;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.page-intro-left .intro {
+  color: white;
+}
+
+.page-intro-left .intro2 {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.page-intro-left .form-control {
+  margin-top: 50px;
+  height: 55px;
+  border-radius: 1000px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.page-intro-left .btn-register{
+  margin-top:50px;
+  height: 55px;
+  color: white;
+  padding: 15px 20px 15px 20px;
+  background-color: #b05b9f;
+  border-radius: 1000px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.page-intro .intro-img1{
+  max-width: 68%;
+  opacity: .4;
+  position: absolute;
+  right: 40%;
+  top: 2rem;
+}
+
+.page-intro-right .intro-img2{
+  width: 450px;
+  bottom: 0px;
+  position: absolute;
+  margin-right: 50px;
+  right: 15%;
+}
+
+
+
+
+

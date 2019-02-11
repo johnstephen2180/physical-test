@@ -1,0 +1,86 @@
+<div class="card">
+  <div class="card-header">
+    Soạn Đề
+  </div>
+  <div class="card-body">
+    <div class="form-group exam-tile">
+      <input type="text" class="form-control" id="examTitle" #examTitle
+             placeholder="Nhập tên đề">
+      <img src="../../../../assets/icon/next-icon.png" height="32" width="32"
+           (click)="handleInputExamTitle(examTitle.value)"/>
+    </div>
+
+    <div [class.show]="isValidatedTitle" class="form-group step">
+      <div class="input-group">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="question-file"
+                 (change)="handleQuestionFileInput($event.target.files)">
+          <label class="custom-file-label" for="question-file">{{questionFileName}}</label>
+        </div>
+
+      </div>
+    </div>
+
+    <div [class.show]="questionFileName != 'Chọn file đề'" class="form-group step">
+      <div class="input-group">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="suggestFile"
+                 (change)="handleSuggestFileInput($event.target.files)">
+          <label class="custom-file-label" for="suggestFile">{{suggestFileName}}</label>
+        </div>
+      </div>
+    </div>
+
+    <div [class.show]="suggestFileName != 'Chọn file gợi ý'" class="form-group step">
+      <div class="input-group">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="resultFile"
+                 (change)="handleResultFileInput($event.target.files)">
+          <label class="custom-file-label" for="resultFile">{{resultFileName}}</label>
+        </div>
+      </div>
+    </div>
+
+    <button [class.show]="!isValidated && resultFileName != 'Chọn file kết quả'" class="btn btn-primary step"
+            (click)="createExam(examTitle.value)">Tiếp tục
+    </button>
+
+    <div [class.show]="isValidated" class="step" style="height: 117px !important;">
+      <div><span>Số câu: {{questionNo}}</span> | <span>Số gợi ý: {{suggestNo}}</span></div>
+      <div class="alert alert-success" role="alert">
+        Dữ liệu hợp lệ
+      </div>
+      <button class="btn btn-primary" (click)="commitExam()"> Đăng bài
+      </button>
+    </div>
+
+  </div>
+
+
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Thông Báo</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div [class.show]="isCommitProcessing" class="step">
+        Vui lòng đợi xử lý
+      </div>
+      <div [class.show]="!isCommitProcessing" class="step" style="height: 90px !important;">
+        <div>Đăng bài thành công</div>
+        <div style="margin-top: 15px;">
+          <button class="btn btn-primary" (click)="doExam()"> Thi thử
+          </button>
+          <button class="btn btn-primary" (click)="commitExam()" style="margin-left: 15px;"> Tiếp tục tạo đê
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+
+
+

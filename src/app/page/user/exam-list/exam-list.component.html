@@ -1,0 +1,15 @@
+<div style="margin-top: 15px;" *ngIf="examList != null">
+  <div *ngFor="let exam of examList.content" class="exam-card">
+    <h5>Đề số {{exam.id}}: {{exam.title}}</h5>
+    <div style="font-size: 13px;">Ngày đăng: {{exam.createTime | date:'dd/MM/yyyy'}}</div>
+    <div>
+      <span>Số câu: {{exam.questionNo}} -</span>
+      <span>Thời gian: 90 phút</span>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="doExam(exam.id)">Làm bài</button>
+  </div>
+
+  <pagination [boundaryLinks]="true" [totalItems]="5"  (pageChanged)="pageChanged($event)"
+              [itemsPerPage]="2"
+              previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+</div>
