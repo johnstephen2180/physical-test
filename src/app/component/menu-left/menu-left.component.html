@@ -26,40 +26,17 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 <div class="nav-side-menu">
-  <div class="brand" *ngIf="user != null">
-    <img src="{{user.photoUrl}}"><span>{{user.name}}</span>
+  <div class="brand" *ngIf="currentUser != null">
+    <img src="{{currentUser.avatar}}"><span>{{currentUser.fullName}}</span>
   </div>
   <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
   <div class="menu-list">
 
     <ul id="menu-content" class="menu-content collapse">
-      <li routerLinkActive="active">
-        <a routerLink="/user/exam-list">
-          <i class="fa fa-file-text-o fa-lg"></i> Danh sách đề
-        </a>
-      </li>
-      <li routerLinkActive="active">
-        <a routerLink="/user/exam-create">
-          <i class="fa fa-edit fa-lg"></i> Soạn đề
-        </a>
-      </li>
-
-
-      <li routerLinkActive="active">
-        <a routerLink="/user/history-test">
-          <i class="fa fa-calendar-o fa-lg"></i> Lịch sử làm bài
-        </a>
-      </li>
-
-      <li routerLinkActive="active">
-        <a routerLink="/user/list">
-          <i class="fa fa-users fa-lg"></i> Danh sách học sinh
-        </a>
-      </li>
-      <li routerLinkActive="active">
-        <a routerLink="/user/history-test-all">
-          <i class="fa fa-bug fa-lg"></i> Chấm bài
+      <li *ngFor="let item of  menu" routerLinkActive="active">
+        <a routerLink="{{item.path}}">
+          <i class="fa {{item.icon}} fa-lg"></i> {{item.title}}
         </a>
       </li>
     </ul>

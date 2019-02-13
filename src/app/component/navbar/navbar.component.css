@@ -23,3 +23,13 @@
   width: 138px;
   height: 50px;
 }
+
+.btn-profile{
+  color: white;
+  font-size: 14px;
+}
+
+.btn-profile img{
+  width: 30px;
+  border-radius: 50%;
+}

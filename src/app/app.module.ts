@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {NavbarComponent} from './component/navbar/navbar.component';
 import {HomeComponent} from './page/home/home.component';
@@ -15,7 +15,9 @@ import {SocialLoginModule, AuthServiceConfig} from 'angularx-social-login';
 import {FacebookLoginProvider} from 'angularx-social-login';
 import {FormsModule} from '@angular/forms';
 import {ExaminationService} from './page/user/examination.service';
-
+import {JwtInterceptor} from './_helpers/jwt.interceptor';
+import {AuthenticationService} from './_services/authentication.service';
+//huong dan ve role http://jasonwatmore.com/post/2018/11/22/angular-7-role-based-authorization-tutorial-with-example
 const config = new AuthServiceConfig([
   {
     id: FacebookLoginProvider.PROVIDER_ID,
@@ -45,10 +47,10 @@ export function provideConfig() {
     SocialLoginModule,
     FormsModule
   ],
-  providers: [AccountService, ExaminationService, {
+  providers: [AccountService, ExaminationService, AuthenticationService, {
     provide: AuthServiceConfig,
     useFactory: provideConfig
-  }],
+  }, {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 

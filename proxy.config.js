@@ -1,0 +1,15 @@
+{
+  "/api/*"
+:
+  {
+    "target"
+  :
+    "http://localhost:9490",
+      "secure"
+  :
+    false,
+      "logLevel"
+  :
+    "debug"
+  }
+}
