@@ -1,4 +1,5 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {ExaminationService} from '../../page/user/examination.service';
 
 @Component({
   selector: 'app-question-card',
@@ -15,22 +16,24 @@ export class QuestionCardComponent implements OnInit {
   @Output() submitAnswerEmitter = new EventEmitter();
   @Output() viewAnswerEmitter = new EventEmitter();
   @ViewChild('btn-suggest') btnSuggest: ElementRef;
-  showInMinutesArray = [1, 2, 5, 7, 10];
+  showInMinutesArray: any;
   isDisabled: Boolean = true;
 
-  constructor() {
+  constructor(private examService: ExaminationService) {
   }
 
   ngOnInit() {
+    this.showInMinutesArray = this.examService.getSuggestCountdownMinutes();
   }
 
 
   viewAnswer() {
-    console.log(this.question);
     this.viewAnswerEmitter.emit(this.question.order);
   }
 
-  submitAnser(value: number) {
-
+  submitResult(value: number) {
+    this.examService.checkResult(this.question.id, value, isRight => {
+      this.submitAnswerEmitter.emit(isRight);
+    });
   }
 }
