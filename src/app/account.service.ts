@@ -1,5 +1,6 @@
 import {Injectable, EventEmitter} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {AuthenticationService} from './_services/authentication.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ export class AccountService {
   public isLogin: Boolean = false;
   userLoginEvent: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private auth: AuthenticationService) {
   }
 
   authenticate(credentials, callback) {
@@ -32,7 +33,7 @@ export class AccountService {
 
   public getAllUser(page: number, callback) {
     const formData: FormData = new FormData();
-    formData.append('token', localStorage.getItem('token'));
+    formData.append('token', this.auth.currentUserValue.token);
     formData.append('page', '' + page);
     // https://github.com/angular/angular/issues/19535
     // https://github.com/angular/angular/issues/13241
