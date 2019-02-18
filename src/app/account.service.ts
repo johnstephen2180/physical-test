@@ -31,13 +31,21 @@ export class AccountService {
 
   }
 
+  _getHttpHeader() {
+    return {
+      headers: new HttpHeaders({
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + this.auth.currentUserValue.token
+      })
+    };
+  }
+
   public getAllUser(page: number, callback) {
     const formData: FormData = new FormData();
-    formData.append('token', this.auth.currentUserValue.token);
     formData.append('page', '' + page);
     // https://github.com/angular/angular/issues/19535
     // https://github.com/angular/angular/issues/13241
-    this.http.post(this.apiUrl + '/user/all', formData
+    this.http.post(this.apiUrl + '/user/all', formData, this._getHttpHeader()
     ).subscribe(data => {
         console.log(data);
         return callback && callback(data);
@@ -50,10 +58,6 @@ export class AccountService {
 
   public emitUserLogin(isLoggedIn: boolean): void {
     this.userLoginEvent.emit(isLoggedIn);
-  }
-
-  public getUserLoginEmitter(): EventEmitter<boolean> {
-    return this.userLoginEvent;
   }
 
   public isLoggedIn(): Boolean {

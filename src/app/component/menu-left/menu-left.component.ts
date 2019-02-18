@@ -13,7 +13,7 @@ import {User} from '../../_models/user';
   styleUrls: ['./menu-left.component.css']
 })
 export class MenuLeftComponent implements OnInit {
-  private currentUser: User;
+  public currentUser: User;
   pages = [];
   menu = [];
 

@@ -7,6 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="stylesheet" href="styles.be68705770b5b22bb6a3.css"></head>
+<script>
+  (function () {
+    // Retrieve the URL the user was trying to access when receiving the 404.
+    var redirect = sessionStorage.redirect;
+    // Remove the URL from sessionStorage.
+    delete sessionStorage.redirect;
+    // Check if we actually need to redirect.
+    if (redirect && redirect != location.href) {
+      // We need to redirect to the URL the user was trying to access.
+      history.replaceState(null, null, redirect);
+    }
+  })();
+</script>
 <body style="background-color: #F7F7F7">
   <app-root></app-root>
 <script type="text/javascript" src="runtime.bb93bee3a279078d6f30.js"></script><script type="text/javascript" src="polyfills.c6871e56cb80756a5498.js"></script><script type="text/javascript" src="scripts.ce2d9ec566a7ff8e6dc0.js"></script><script type="text/javascript" src="main.2f0779903339ba31ff43.js"></script></body>

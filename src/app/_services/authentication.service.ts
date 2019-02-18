@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 
 import {User} from '../_models/user';
@@ -37,11 +37,11 @@ export class AuthenticationService {
           localStorage.setItem('currentUser', JSON.stringify(currentUser));
           this.currentUserSubject.next(currentUser);
           this.router.navigate(['/user']);
+
         },
         error => {
           console.log(error);
         });
-
 
     });
   }
@@ -56,7 +56,9 @@ export class AuthenticationService {
     this.currentUserSubject.next(null);
     this.router.navigate(['/login']);
     this.authService.signOut();
+    // this._testAuth();
   }
+
 
   login() {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
@@ -78,9 +80,4 @@ export class AuthenticationService {
     //   }));
   }
 
-  logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
-  }
 }
