@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 
 import {User} from '../_models/user';
@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 
 @Injectable({providedIn: 'root'})
 export class AuthenticationService {
-  private apiUrl = 'http://localhost:9490';
+  private apiUrl = 'https://112.78.15.55:4201';
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
@@ -22,7 +22,7 @@ export class AuthenticationService {
         return;
       }
 
-      console.log('thuc hien dng nhap in auth');
+      console.log('thuc hien dng nhap in auth 1: ' + this.apiUrl);
       const fbToken = user.authToken;
       const formData: FormData = new FormData();
       formData.append('fbToken', fbToken);

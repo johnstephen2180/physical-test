@@ -34,7 +34,7 @@
 
             <div class="collapse" id="collapseSuggest-{{question.order}}-{{suggest.order}}">
               <div class="card card-body" style="margin-top: 20px; margin-left: 10px;">
-                <img src="http://localhost:9490/{{suggest.content}}" style="height: 290px;">.
+                <img src="{{apiUrl}}/{{suggest.content}}" style="height: 290px;">.
               </div>
             </div>
 
@@ -91,8 +91,9 @@
         </button>
 
         <div class="collapse" id="collapseAnswer-{{question.order}}">
-          <div class="card card-body" style="margin-top: 20px; margin-left: 10px;">
-            <img src="http://localhost:9490/{{question.answer.content}}" style="height: 290px;">.
+          <div *ngFor="let answerContent of question.answer.contentList" class="card card-body"
+               style="margin-top: 20px; margin-left: 10px;">
+            <img src="{{apiUrl}}/{{answerContent}}" style="height: 290px;">.
           </div>
         </div>
       </div>

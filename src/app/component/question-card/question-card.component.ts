@@ -18,6 +18,7 @@ export class QuestionCardComponent implements OnInit {
   @ViewChild('btn-suggest') btnSuggest: ElementRef;
   showInMinutesArray: any;
   isDisabled: Boolean = true;
+  apiUrl = 'https://112.78.15.55:4201';
 
   constructor(private examService: ExaminationService) {
   }

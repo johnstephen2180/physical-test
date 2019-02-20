@@ -6,7 +6,7 @@ import {AuthenticationService} from './_services/authentication.service';
   providedIn: 'root',
 })
 export class AccountService {
-  private apiUrl = 'http://localhost:9490';
+  private apiUrl = 'https://112.78.15.55:4201';
   authenticated = false;
   public isLogin: Boolean = false;
   userLoginEvent: EventEmitter<boolean> = new EventEmitter();
@@ -46,6 +46,21 @@ export class AccountService {
     // https://github.com/angular/angular/issues/19535
     // https://github.com/angular/angular/issues/13241
     this.http.post(this.apiUrl + '/user/all', formData, this._getHttpHeader()
+    ).subscribe(data => {
+        console.log(data);
+        return callback && callback(data);
+      },
+      error => {
+        console.log(error);
+      });
+  }
+
+  public getUser(userId: string, callback) {
+    const formData: FormData = new FormData();
+    formData.append('id', userId);
+    // https://github.com/angular/angular/issues/19535
+    // https://github.com/angular/angular/issues/13241
+    this.http.post(this.apiUrl + '/user/detail', formData, this._getHttpHeader()
     ).subscribe(data => {
         console.log(data);
         return callback && callback(data);
